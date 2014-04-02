@@ -2,6 +2,7 @@
 
 Applet::Applet(QGraphicsItem *parent) : QObject(), QGraphicsItem(parent)
 {
+	side = true;
 	setAcceptHoverEvents(true);
 }
 

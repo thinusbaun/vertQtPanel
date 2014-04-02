@@ -2,6 +2,7 @@
 
 DesktopApplet::DesktopApplet(QGraphicsItem *parent) : Applet(parent)
 {
+	side = true;
 	numOfDesktops=10;
 	m_process = new QProcess();
 	m_changeProcess = new QProcess();

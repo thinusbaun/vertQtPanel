@@ -17,4 +17,6 @@ class ClockApplet : public Applet
 		~ClockApplet();
 		QRectF boundingRect() const;
 		void paint(QPainter *painter, const QStyleOptionGraphicsItem *style, QWidget *widget);
+	public slots:
+		void updateTime();
 };

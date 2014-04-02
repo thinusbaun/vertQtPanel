@@ -3,6 +3,9 @@
 ClockApplet::ClockApplet() : Applet()
 {
 	m_metrics = new QFontMetrics(QFont());
+	side = false;
+	connect(&m_timer, SIGNAL(timeout()), this, SLOT(updateTime()));
+	m_timer.start(1234);
 }
 
 ClockApplet::~ClockApplet()
@@ -26,4 +29,9 @@ void ClockApplet::paint(QPainter *painter, const QStyleOptionGraphicsItem *style
 	}
 	painter->setPen(Qt::black);
 	painter->drawText(boundingRect(),Qt::AlignCenter,  tmp); 
+}
+
+void ClockApplet::updateTime()
+{
+	update();
 }

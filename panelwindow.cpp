@@ -43,11 +43,26 @@ void PanelWidget::addItem(Applet *item)
 	m_applets.append(item);
 	m_scene->addItem(m_applets.last());
 	int y=0;
+	int downy=800;
 	for(int i=0;i<m_applets.length()-1; i++)
 	{
 		QRectF tmp = m_applets[i]->boundingRect();
-		y += tmp.height();
+		if (m_applets[i]->side)
+		{
+			y += tmp.height();
+		} else
+		{
+			downy -= tmp.height();
+		}
 	}
-	m_applets.last()->setPos(0,y);
+	qDebug() << "downy" <<downy;
+	if (m_applets.last()->side)
+	{
+		m_applets.last()->setPos(0,y);
+	} else
+	{
+		m_applets.last()->setPos(0,downy-m_applets.last()->boundingRect().height());
+	}
+
 }
 
