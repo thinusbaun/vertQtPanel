@@ -18,7 +18,7 @@ DesktopApplet::~DesktopApplet()
 
 QRectF DesktopApplet::boundingRect() const
 {
-	return QRectF(0,0,16,16*numOfDesktops);
+	return QRectF(0,0,16,16*(numOfDesktops+1));
 }
 
 void DesktopApplet::readLine()
@@ -49,15 +49,16 @@ void DesktopApplet::readLine()
 			break;
 		}
 	}
-	qDebug() << m_desktops;
+
+	m_mode = sList.last() == QString("Ltiled\n") ? 1: 0;
+
+	qDebug() << m_desktops << m_mode;
 	update();
 }
 
 void DesktopApplet::paint(QPainter *painter, const QStyleOptionGraphicsItem *style, QWidget *widget)
 {
 	painter->setRenderHint(QPainter::Antialiasing);
-	//QBrush br(Qt::red);
-	//painter->fillRect(boundingRect(), br);
 	for (int i=0; i<numOfDesktops;i++)
 	{
 		painter->setPen(Qt::NoPen);
@@ -75,6 +76,14 @@ void DesktopApplet::paint(QPainter *painter, const QStyleOptionGraphicsItem *sty
 			painter->setBrush(QBrush(Qt::red));
 		}
 		painter->drawEllipse(QRectF(0,i*16,16,16));
+	}
+	painter->setPen(Qt::black);
+	if (m_mode)
+	{
+    	painter->drawText(QRectF(0,numOfDesktops*16,16,16), Qt::AlignCenter, "T");
+	} else
+	{
+    	painter->drawText(QRectF(0,numOfDesktops*16,16,16), Qt::AlignCenter, "M");
 	}
 
 }
