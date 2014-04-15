@@ -21,13 +21,17 @@ QRectF ClockApplet::boundingRect() const
 
 void ClockApplet::paint(QPainter *painter, const QStyleOptionGraphicsItem *style, QWidget *widget)
 {
-	Applet::paint( painter, style, widget);
+	//Applet::paint( painter, style, widget);
 	QString tmp = QTime::currentTime().toString("hhmm");
 	for(int i=3;i>0;i--)
 	{
+	    
 		tmp = tmp.insert(i, "\n");
 	}
-	painter->setPen(Qt::black);
+	QFont font = painter->font();
+	font.setBold(true);
+	painter->setFont(font);
+	painter->setPen(Qt::white);
 	painter->drawText(boundingRect(),Qt::AlignCenter,  tmp); 
 }
 

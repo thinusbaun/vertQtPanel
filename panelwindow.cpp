@@ -6,8 +6,7 @@
 
 PanelWidget::PanelWidget(QWidget *parent) : QWidget(parent)
 {
-	qDebug() << "panelWidget" << this;
-	this->setStyleSheet("border-style:none;");
+	this->setStyleSheet("border-style:none; background-color:#2b3039;");
 	this->resize(16,800);
 	m_layout = new QGridLayout();
 	this->setLayout(m_layout);
@@ -22,12 +21,12 @@ PanelWidget::PanelWidget(QWidget *parent) : QWidget(parent)
 	m_view->setFixedSize(16,800);
 	m_view->setSceneRect(0,0,16,800);
 	m_layout->addWidget(m_view);
-    Display *display = XOpenDisplay(NULL);
-    Atom tmp = XInternAtom(display, "_NET_WM_WINDOW_TYPE_DOCK", False);
-    XChangeProperty(display, winId(), XInternAtom(display,"_NET_WM_WINDOW_TYPE", False)
-                    ,XA_ATOM, 32, PropModeReplace, (const unsigned char*)&tmp, 1);
-    XFlush(display);
-    XMapWindow(display, winId());
+	Display *display = XOpenDisplay(NULL);
+	Atom tmp = XInternAtom(display, "_NET_WM_WINDOW_TYPE_DOCK", False);
+	XChangeProperty(display, winId(), XInternAtom(display,"_NET_WM_WINDOW_TYPE", False)
+			,XA_ATOM, 32, PropModeReplace, (const unsigned char*)&tmp, 1);
+	XFlush(display);
+	XMapWindow(display, winId());
 	addItem(new DesktopApplet());
 	addItem(new ClockApplet());
 
@@ -55,7 +54,6 @@ void PanelWidget::addItem(Applet *item)
 			downy -= tmp.height();
 		}
 	}
-	qDebug() << "downy" <<downy;
 	if (m_applets.last()->side)
 	{
 		m_applets.last()->setPos(0,y);

@@ -77,7 +77,10 @@ void DesktopApplet::paint(QPainter *painter, const QStyleOptionGraphicsItem *sty
 		}
 		painter->drawEllipse(QRectF(0,i*16,16,16));
 	}
-	painter->setPen(Qt::black);
+	QFont font = painter->font();
+	font.setBold(true);
+	painter->setFont(font);
+	painter->setPen(Qt::white);
 	if (m_mode)
 	{
     	painter->drawText(QRectF(0,numOfDesktops*16,16,16), Qt::AlignCenter, "T");
