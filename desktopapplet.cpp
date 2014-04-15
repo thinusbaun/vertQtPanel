@@ -58,6 +58,7 @@ void DesktopApplet::readLine()
 
 void DesktopApplet::paint(QPainter *painter, const QStyleOptionGraphicsItem *style, QWidget *widget)
 {
+	Applet::paint( painter, style, widget);
 	painter->setRenderHint(QPainter::Antialiasing);
 	for (int i=0; i<numOfDesktops;i++)
 	{

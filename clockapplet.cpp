@@ -28,9 +28,9 @@ void ClockApplet::paint(QPainter *painter, const QStyleOptionGraphicsItem *style
 	    
 		tmp = tmp.insert(i, "\n");
 	}
-	QFont font = painter->font();
-	font.setBold(true);
-	painter->setFont(font);
+	//QFont font = painter->font();
+	//font.setBold(true);
+	//painter->setFont(font);
 	painter->setPen(Qt::white);
 	painter->drawText(boundingRect(),Qt::AlignCenter,  tmp); 
 }

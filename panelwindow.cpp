@@ -2,6 +2,7 @@
 #include <X11/Xlib.h>
 #include "desktopapplet.hpp"
 #include "clockapplet.hpp"
+#include "ldmapplet.hpp"
 #include <X11/Xatom.h>
 
 PanelWidget::PanelWidget(QWidget *parent) : QWidget(parent)
@@ -28,6 +29,7 @@ PanelWidget::PanelWidget(QWidget *parent) : QWidget(parent)
 	XFlush(display);
 	XMapWindow(display, winId());
 	addItem(new DesktopApplet());
+	addItem(new LdmApplet());
 	addItem(new ClockApplet());
 
 }
