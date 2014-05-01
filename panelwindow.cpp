@@ -1,9 +1,7 @@
 #include "panelwindow.hpp"
-#include <X11/Xlib.h>
 #include "desktopapplet.hpp"
 #include "clockapplet.hpp"
 #include "ldmapplet.hpp"
-#include <X11/Xatom.h>
 
 PanelWidget::PanelWidget(QWidget *parent) : QWidget(parent)
 {
@@ -22,14 +20,8 @@ PanelWidget::PanelWidget(QWidget *parent) : QWidget(parent)
 	m_view->setFixedSize(16,800);
 	m_view->setSceneRect(0,0,16,800);
 	m_layout->addWidget(m_view);
-	Display *display = XOpenDisplay(NULL);
-	Atom tmp = XInternAtom(display, "_NET_WM_WINDOW_TYPE_DOCK", False);
-	XChangeProperty(display, winId(), XInternAtom(display,"_NET_WM_WINDOW_TYPE", False)
-			,XA_ATOM, 32, PropModeReplace, (const unsigned char*)&tmp, 1);
-	XFlush(display);
-	XMapWindow(display, winId());
+//TOTAJ USTAWIENIE OKNA
 	addItem(new DesktopApplet());
-	addItem(new LdmApplet());
 	addItem(new ClockApplet());
 
 }
