@@ -59,7 +59,9 @@ int main(int argc, char *argv[])
 	PanelWidget dialog;
 	//dialog.setStyleSheet("border-style: none; background-color: #2b2f38");
 	qDebug() << dialog.winId();
-	X11Support::setNetWmStrut(dialog.winId());
+        //TODO: CLeaner way to do this?
+        X11Support support;
+	support.setNetWmStrut(dialog.winId());
 	//QGridLayout *lay = new QGridLayout();
 	//dialog.setLayout(lay);
 	//QGraphicsView *view = new QGraphicsView();
